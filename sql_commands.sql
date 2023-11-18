@@ -53,3 +53,27 @@ CREATE TABLE REGISTRO
     SFB,
     PRIMARY KEY (MESREGISTRO, LOCALIZADOR));
 
+INSERT INTO ORGAO_SUPERIOR VALUES(235880, Ministério do Desenvolvimento Regional, 1);
+INSERT INTO ORGAO_SUPERIOR VALUES(219925, Ministério da Mulher, da Família e dos Direitos Humanos, 3);
+INSERT INTO ORGAO_SUPERIOR VALUES(308800, Ministério da Fazenda, 5);
+INSERT INTO ORGAO_SUPERIOR VALUES(219924, Secretaria-Geral da Presidência da República, 7);
+INSERT INTO ORGAO_SUPERIOR VALUES(46, Advocacia-Geral da União, 11);
+INSERT INTO ORGAO_SUPERIOR VALUES(304, Ministério da Saúde, 13);
+INSERT INTO ORGAO_SUPERIOR VALUES(308816, Ministério dos Direitos Humanos e da Cidadania, 15);
+INSERT INTO ORGAO_SUPERIOR VALUES(2837, Casa Civil da Presidência da República, 17);
+INSERT INTO ORGAO_SUPERIOR VALUES(214460, Controladoria-Geral da União, 19);
+INSERT INTO ORGAO_SUPERIOR VALUES(235876, Ministério da Economia, 25);
+INSERT INTO ORGAO_SUPERIOR VALUES(26, Presidência da República, 32);
+INSERT INTO ORGAO_SUPERIOR VALUES(308798, Ministério das Cidades, 34);
+INSERT INTO ORGAO_SUPERIOR VALUES(308799, Ministério da Integração e do Desenvolvimento Regional, 36);
+INSERT INTO ORGAO_SUPERIOR VALUES(27, Gabinete de Segurança Institucional da Presidência da República, 39);
+INSERT INTO ORGAO_SUPERIOR VALUES(308803, Ministério da Gestão e da Inovação em Serviços Públicos, 42);
+INSERT INTO ORGAO_SUPERIOR VALUES(42673, Secretaria de Relações Institucionais, 47);
+INSERT INTO ORGAO_SUPERIOR VALUES(308822, Secretaria de Comunicação Social da Presidência da República, 51);
+INSERT INTO ORGAO_SUPERIOR VALUES(45013, Agência Nacional de Saúde Suplementar, 80);
+INSERT INTO ORGAO_SUPERIOR VALUES(308821, Ministério da Cultura, 83);
+INSERT INTO ORGAO_SUPERIOR VALUES(264359, Ministério das Comunicações, 85);
+INSERT INTO ORGAO_SUPERIOR VALUES(306112, Coordenação da Equipe de Transição de Governo-2022-2023, 204);
+INSERT INTO ORGAO_SUPERIOR VALUES(308815, Ministério das Mulheres, 206);
+INSERT INTO ORGAO_SUPERIOR VALUES(308823, Ministério da Igualdade Racial, 208);
+INSERT INTO ORGAO_SUPERIOR VALUES(308804, Ministério do Planejamento e Orçamento, 212);
