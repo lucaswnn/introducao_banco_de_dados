@@ -3,7 +3,7 @@ import pandas as pd
 #criar arquivo .sql
 sql_file = open('sql_commands.sql', 'w', encoding='utf-8')
 
-disable_foreign = 'PRAGMA foreign_keys=OFF;\n'
+disable_foreign = 'PRAGMA foreign_keys=OFF;\nBEGIN TRANSACTION;\n'
 
 tab1 = \
 '''
@@ -78,7 +78,7 @@ def formato_data(string):
 
 for index, linha in csv_dump.iterrows():
     #processar tabela REGISTRO
-    tab6_inserts.append(f'INSERT INTO REGISTRO VALUES({linha["mes_registro"]}, {linha["localizador"]}, {linha["emissao"]}, {linha["no_show"]}, {linha["remarcado"]}, {linha["cancelado"]}, {linha["valor_multas"]}, {linha["valor_reembolso"]}, {linha["diferenca_tarifa"]}, {linha["situacao_bilhete"]});\n')
+    tab6_inserts.append(f'INSERT INTO REGISTRO VALUES({linha["mes_registro"]}, "{linha["localizador"]}", "{linha["emissao"]}", "{linha["no_show"]}", "{linha["remarcado"]}", "{linha["cancelado"]}", {linha["valor_multas"]}, {linha["valor_reembolso"]}, {linha["diferenca_tarifa"]}, "{linha["situacao_bilhete"]}");\n')
     
     tab1_key = linha['codigo_orgao_superior']
     if tab1_key not in tab1_dict:
@@ -119,24 +119,25 @@ for index, linha in csv_dump.iterrows():
 
 tab1_inserts = []
 for key in tab1_dict:
-    tab1_inserts.append(f'INSERT INTO ORGAO_SUPERIOR VALUES({key}, {tab1_dict[key][0]}, {tab1_dict[key][1]});\n')
+    tab1_inserts.append(f'INSERT INTO ORGAO_SUPERIOR VALUES({key}, "{tab1_dict[key][0]}", {tab1_dict[key][1]});\n')
 
 tab2_inserts = []
 for key in tab2_dict:
-    tab2_inserts.append(f'INSERT INTO ORGAO_SOLICITANTE VALUES({key}, {tab2_dict[key][0]}, {tab2_dict[key][1]});\n')
+    tab2_inserts.append(f'INSERT INTO ORGAO_SOLICITANTE VALUES({key}, "{tab2_dict[key][0]}", {tab2_dict[key][1]});\n')
 
 tab3_inserts = []
 for key in tab3_dict:
-    tab3_inserts.append(f'INSERT INTO COMPANHIA_AEREA VALUES({tab3_dict[key][0]}, {key}, {tab3_dict[key][1]});\n')
+    tab3_inserts.append(f'INSERT INTO COMPANHIA_AEREA VALUES({tab3_dict[key][0]}, "{key}", "{tab3_dict[key][1]}");\n')
 
 tab4_inserts = []
 tab5_inserts = []
 for key in tab4_5_dict:
-    tab4_inserts.append(f'INSERT INTO VIAGEM VALUES({key}, {tab4_5_dict[key][0][0]}, {tab4_5_dict[key][0][1]}, {tab4_5_dict[key][0][2]}, {tab4_5_dict[key][0][3]}, {tab4_5_dict[key][0][4]}, {tab4_5_dict[key][0][5]}, {tab4_5_dict[key][0][6]});\n')
-    tab5_inserts.append(f'INSERT INTO TARIFA VALUES({key}, {tab4_5_dict[key][1][0]}, {tab4_5_dict[key][1][1]}, {tab4_5_dict[key][1][2]}, {tab4_5_dict[key][1][3]}, {tab4_5_dict[key][1][4]});\n')
+    tab4_inserts.append(f'INSERT INTO VIAGEM VALUES("{key}", {tab4_5_dict[key][0][0]}, {tab4_5_dict[key][0][1]}, "{tab4_5_dict[key][0][2]}", "{tab4_5_dict[key][0][3]}", "{tab4_5_dict[key][0][4]}", {tab4_5_dict[key][0][5]}, "{tab4_5_dict[key][0][6]}");\n')
+    tab5_inserts.append(f'INSERT INTO TARIFA VALUES("{key}", {tab4_5_dict[key][1][0]}, {tab4_5_dict[key][1][1]}, {tab4_5_dict[key][1][2]}, {tab4_5_dict[key][1][3]}, {tab4_5_dict[key][1][4]});\n')
 
 sql_file.write(disable_foreign + '\n')
 sql_file.write(tab1 + tab2 + tab3 + tab4 + tab5 + tab6)
+
 sql_file.writelines(tab1_inserts)
 sql_file.writelines(tab2_inserts)
 sql_file.writelines(tab3_inserts)
@@ -144,4 +145,5 @@ sql_file.writelines(tab4_inserts)
 sql_file.writelines(tab5_inserts)
 sql_file.writelines(tab6_inserts)
 
+sql_file.write('COMMIT;')
 sql_file.close()
